@@ -8,16 +8,16 @@ class CargoBot
   attr_accessor :fragile
   attr_accessor :goal
   
-  def initialize(setup=[],claw_position=0)
-    @program = []
-    @pallets = setup
-    @claw_position = claw_position
+  def initialize(args={})
+    @program = args[:program] || []
+    @claw_position = args[:claw_position] || 0 
+    @step_limit = args[:step_limit] || 500
+    @fragile = args[:fragile] || false
+    @goal = args[:goal] || []
+    
     @call_stack = []
-    @step_limit = 500
     @steps = 0
     @wall_bumps = 0
-    @fragile = false
-    @goal = []
   end
   
   def condition_met?(flag)
